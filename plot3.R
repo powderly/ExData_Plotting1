@@ -59,12 +59,13 @@ plot3 <- function(){
         
         par(bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
         
-        plot(test4,SubsetData$Global_active_power,ylab="Energy Sub metering",xlab="", type="l",
-             cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
-        
-        ## --------------COPY SCREEN DEVICE to PNG-------------------##
-        print("Copying Plot to plot2.png")
-        dev.copy(png, file = "plot2.png") ## copy from the screen device to a PNG file
+        png(file = "plot3.png")
+        plot(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_1,ylab="Energy Sub metering",xlab="", type="l",
+             cex.lab=0.8, cex.axis=0.8, cex.main=1, cex.sub=0.8, col="black") ## reduce magnification to reduce font size
+        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_2, col="red")
+        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_3, col="blue")
+        legend("topright", legend=c("Sub_metering_1", "Sub_metering_1", "Sub_metering_1"), xjust=1, 
+               cex=0.8, bg="transparent", lwd=1, lty=1, col=c("black", "red", "blue"))
         print("PNG created.")
         print("closing device...")
         dev.off() ## Don't forget to close the PNG device!
