@@ -1,5 +1,5 @@
 ##---------------------------------------------------------------------------------##
-## plot2.R is a script that downloads recreates 2 of 4 varied plots from R.Peng's  ##
+## plot2.R is a script that downloads recreates 3 of 4 varied plots from R.Peng's  ##
 ## ExData_plotting git repo. It uses a set of data from the UC Irvine Machine      ##
 ## Learning repository, specifically a dataset of individual household electric    ##
 ## power consumption over a 4 year time period. The script performs the following: ##
@@ -11,7 +11,7 @@
 ## 5. copies that screen output to a png file (of the same name as the script)     ##                                                                                      
 ##---------------------------------------------------------------------------------##
 
-plot2 <- function(){
+plot3 <- function(){
         
         Sys.setlocale("LC_TIME", "C") ## adjust for multiple timezones
         
@@ -59,7 +59,7 @@ plot2 <- function(){
         
         par(bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
         
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_active_power,ylab="Global Active Power (kilowatts)",xlab="", type="l",
+        plot(test4,SubsetData$Global_active_power,ylab="Energy Sub metering",xlab="", type="l",
              cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
         
         ## --------------COPY SCREEN DEVICE to PNG-------------------##
