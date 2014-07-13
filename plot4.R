@@ -1,5 +1,5 @@
 ##---------------------------------------------------------------------------------##
-## plot3.R is a script that downloads recreates 3 of 4 varied plots from R.Peng's  ##
+## plot4.R is a script that downloads recreates 4 of 4 varied plots from R.Peng's  ##
 ## ExData_plotting git repo. It uses a set of data from the UC Irvine Machine      ##
 ## Learning repository, specifically a dataset of individual household electric    ##
 ## power consumption over a 4 year time period. The script performs the following: ##
@@ -11,7 +11,7 @@
 ## 5. copies that screen output to a png file (of the same name as the script)     ##                                                                                      
 ##---------------------------------------------------------------------------------##
 
-plot3 <- function(){
+plot4 <- function(){
         
         Sys.setlocale("LC_TIME", "C") ## adjust for multiple timezones
         
@@ -52,20 +52,38 @@ plot3 <- function(){
         print("Data Processed.")
         print("Plotting Data...")
         
-        ## --------------PRODUCE THE PLOT USING BASE-------------------##
+        ## --------------PRODUCE THE PLOT USING BASE R PLOT-------------------##
         ## make a new col with the time and date combined and convert that to a POSIXlt object
         SubsetData$ConcatenateTimeDate <- paste(SubsetData$Date, SubsetData$Time) 
         SubsetData$ConcatenateTimeDate <- strptime(SubsetData$ConcatenateTimeDate, format="20%y-%m-%d %H:%M:%S")
         
-        par(bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
+        ## open the png file for plotting
+        png(file = "plot4.png")
         
-        png(file = "plot3.png")
+        ## set the par, make a 2x2 mtrix, transparent background and set the margins
+        par( mfrow=c(2,2), bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
+       
+        ## --------- PLOT#1
+        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_active_power,ylab="Global Active Power (kilowatts)",xlab="", type="l",
+             cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
+        
+        ## --------- PLOT#2
+        plot(SubsetData$ConcatenateTimeDate,SubsetData$Voltage,ylab="Voltage",xlab="datetime", type="l",
+             cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
+        
+        ## --------  PLOT#3
         plot(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_1,ylab="Energy Sub metering",xlab="", type="l",
              cex.lab=0.8, cex.axis=0.8, cex.main=1, cex.sub=0.8, col="black") ## reduce magnification to reduce font size
         lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_2, col="red")
         lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_3, col="blue")
         legend("topright", legend=c("Sub_metering_1", "Sub_metering_1", "Sub_metering_1"), xjust=1, 
-               cex=0.8, bg="transparent", lwd=1, lty=1, col=c("black", "red", "blue"))
+               cex=0.8, bg="transparent", lwd=1, lty=1, bty="n", col=c("black", "red", "blue"))
+        
+        ## -------- PLOT#4
+        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_reactive_power,ylab="Global_reactive_power",xlab="datetime", type="l",
+             cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
+        
+        ## --------- CLOSE THE GRAPHIC DEVICE
         print("PNG created.")
         print("closing device...")
         dev.off() ## Don't forget to close the PNG device!
