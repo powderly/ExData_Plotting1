@@ -1,3 +1,7 @@
+## EXData_Plotting Repo
+
+Inside this repo you will find a set a scripts and plots for the manipulation and modeling of household electric power consumption data
+
 ## Introduction
 
 This excersice uses the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
