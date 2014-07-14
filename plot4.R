@@ -40,7 +40,7 @@ plot4 <- function(){
         ##--------------2. OPENING DATA.TABLES-----------------------##
         ## open 133 MB file named household_power_consumption.txt 
         ## it is a file with 2075259 obs and 9 variable names
-        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE)
+        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", stringsAsFactors=FALSE)
         print("Data Loaded.")
         print("Pre-Processing Data...")
         
