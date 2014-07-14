@@ -40,7 +40,7 @@ plot3 <- function(){
         ##--------------2. OPENING DATA.TABLES-----------------------##
         ## open 133 MB file named household_power_consumption.txt 
         ## it is a file with 2075259 obs and 9 variable names
-        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", stringsAsFactors=FALSE)
+        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE)
         print("Data Loaded.")
         print("Pre-Processing Data...")
         
@@ -60,11 +60,11 @@ plot3 <- function(){
         par(bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
         
         png(file = "plot3.png")
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_1,ylab="Energy Sub metering",xlab="", type="l",
+        plot(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_1),ylab="Energy Sub metering",xlab="", type="l",
              cex.lab=0.8, cex.axis=0.8, cex.main=1, cex.sub=0.8, col="black") ## reduce magnification to reduce font size
-        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_2, col="red")
-        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_3, col="blue")
-        legend("topright", legend=c("Sub_metering_1", "Sub_metering_1", "Sub_metering_1"), xjust=1, 
+        lines(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_2), col="red")
+        lines(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_3), col="blue")
+        legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), xjust=1, 
                cex=0.8, bg="transparent", lwd=1, lty=1, col=c("black", "red", "blue"))
         print("PNG created.")
         print("closing device...")

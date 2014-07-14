@@ -40,7 +40,7 @@ plot4 <- function(){
         ##--------------2. OPENING DATA.TABLES-----------------------##
         ## open 133 MB file named household_power_consumption.txt 
         ## it is a file with 2075259 obs and 9 variable names
-        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", stringsAsFactors=FALSE)
+        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE)
         print("Data Loaded.")
         print("Pre-Processing Data...")
         
@@ -64,23 +64,23 @@ plot4 <- function(){
         par( mfrow=c(2,2), bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
        
         ## --------- PLOT#1
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_active_power,ylab="Global Active Power (kilowatts)",xlab="", type="l",
+        plot(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Global_active_power),ylab="Global Active Power (kilowatts)",xlab="", type="l",
              cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
         
         ## --------- PLOT#2
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Voltage,ylab="Voltage",xlab="datetime", type="l",
+        plot(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Voltage),ylab="Voltage",xlab="datetime", type="l",
              cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
         
         ## --------  PLOT#3
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_1,ylab="Energy Sub metering",xlab="", type="l",
+        plot(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_1),ylab="Energy Sub metering",xlab="", type="l",
              cex.lab=0.8, cex.axis=0.8, cex.main=1, cex.sub=0.8, col="black") ## reduce magnification to reduce font size
-        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_2, col="red")
-        lines(SubsetData$ConcatenateTimeDate,SubsetData$Sub_metering_3, col="blue")
-        legend("topright", legend=c("Sub_metering_1", "Sub_metering_1", "Sub_metering_1"), xjust=1, 
+        lines(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_2), col="red")
+        lines(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Sub_metering_3), col="blue")
+        legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), xjust=1, 
                cex=0.8, bg="transparent", lwd=1, lty=1, bty="n", col=c("black", "red", "blue"))
         
         ## -------- PLOT#4
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_reactive_power,ylab="Global_reactive_power",xlab="datetime", type="l",
+        plot(SubsetData$ConcatenateTimeDate,as.numeric(SubsetData$Global_reactive_power),ylab="Global_reactive_power",xlab="datetime", type="l",
              cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
         
         ## --------- CLOSE THE GRAPHIC DEVICE

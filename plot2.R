@@ -40,7 +40,7 @@ plot2 <- function(){
         ##--------------2. OPENING DATA.TABLES-----------------------##
         ## open 133 MB file named household_power_consumption.txt 
         ## it is a file with 2075259 obs and 9 variable names
-        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", stringsAsFactors=FALSE)
+        OriginalData <-read.table("./household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE)
         print("Data Loaded.")
         print("Pre-Processing Data...")
         
@@ -59,7 +59,7 @@ plot2 <- function(){
         
         par(bg="transparent", mar=c(5,5,4,2)) ## set the background to transparent
         
-        plot(SubsetData$ConcatenateTimeDate,SubsetData$Global_active_power,ylab="Global Active Power (kilowatts)",xlab="", type="l",
+        plot(SubsetData$ConcatenateTimeDate, as.numeric(SubsetData$Global_active_power),ylab="Global Active Power (kilowatts)",xlab="", type="l",
              cex.lab=0.75, cex.axis=0.75, cex.main=1, cex.sub=0.75) ## reduce magnification to reduce font size
         
         ## --------------COPY SCREEN DEVICE to PNG-------------------##
